@@ -182,7 +182,7 @@ export default function Portfolio(){
   /* Resume URL can be overridden via VITE_RESUME_URL in deployment env */
   const RESUME_URL =
     import.meta.env.VITE_RESUME_URL ||
-    "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing";
+    "https://drive.google.com/file/d/1PFFBURk3KHghJeIInqcGr_9uahTfuwxz/view?usp=sharing";
 
   const HIRE_MAILTO = `mailto:${D.email}?subject=${encodeURIComponent("Hiring Opportunity - Portfolio Inquiry")}&body=${encodeURIComponent("Hi Chinmay,\n\nI came across your portfolio and would like to discuss a potential opportunity with you. Please let me know when you are available to talk.\n\nBest regards,")}`;
 
