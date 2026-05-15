@@ -182,7 +182,7 @@ export default function Portfolio(){
   /* Resume URL can be overridden via VITE_RESUME_URL in deployment env */
   const RESUME_URL =
     import.meta.env.VITE_RESUME_URL ||
-    "https://drive.google.com/file/d/1PFFBURk3KHghJeIInqcGr_9uahTfuwxz/view?usp=sharing";
+    "https://drive.google.com/file/d/1S37TG4HrrBt-ewVHojeO-9-TL6TCdp2s/view?usp=sharing";
 
   const HIRE_MAILTO = `mailto:${D.email}?subject=${encodeURIComponent("Hiring Opportunity - Portfolio Inquiry")}&body=${encodeURIComponent("Hi Chinmay,\n\nI came across your portfolio and would like to discuss a potential opportunity with you. Please let me know when you are available to talk.\n\nBest regards,")}`;
 
@@ -335,7 +335,7 @@ export default function Portfolio(){
             <a href="#projects" className="btn-outline" onClick={e=>{e.preventDefault();navTo("projects");}}>View Projects</a>
           </div>
           <div className="hero-stats">
-            {[{v:"3+",l:"Internships"},{v:"12+",l:"Certifications"},{v:"May 2026",l:"Masters Graduation"}].map(s=>(
+            {[{v:"3+",l:"Internships"},{v:"12+",l:"Certifications"},{v:"Graduated May 2026",l:"Masters Graduation"}].map(s=>(
               <div key={s.l} className="hs"><div className="hs-v">{s.v}</div><div className="hs-l">{s.l}</div></div>
             ))}
           </div>
