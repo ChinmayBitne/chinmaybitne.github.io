@@ -17,6 +17,8 @@ import {
 } from "./content";
 import "./styles.css";
 
+const contactEmailHref = `mailto:${profile.email}?subject=${encodeURIComponent("Hiring Opportunity - Portfolio Inquiry")}&body=${encodeURIComponent("Hi Chinmay,\n\nI came across your portfolio and would like to discuss a potential opportunity with you. Please let me know when you are available to talk.\n\nBest regards,")}`;
+
 function normalizePath(pathname) {
   const withoutIndex = pathname.replace(/\/index\.html$/, "");
   return withoutIndex.replace(/\/+$/, "") || "/";
@@ -83,17 +85,38 @@ function useReveals(route) {
       items.forEach((item) => item.classList.add("is-visible"));
       return undefined;
     }
+    let frame;
+    const reveal = (item) => {
+      item.classList.add("is-visible");
+      observer.unobserve(item);
+    };
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) reveal(entry.target);
       }),
       { threshold: 0.08, rootMargin: "0px 0px -5%" },
     );
+    const revealPassedItems = () => {
+      items.forEach((item) => {
+        if (!item.classList.contains("is-visible") && item.getBoundingClientRect().top < window.innerHeight) {
+          reveal(item);
+        }
+      });
+      frame = undefined;
+    };
+    const scheduleRevealCheck = () => {
+      if (!frame) frame = window.requestAnimationFrame(revealPassedItems);
+    };
     items.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
+    revealPassedItems();
+    window.addEventListener("scroll", scheduleRevealCheck, { passive: true });
+    window.addEventListener("resize", scheduleRevealCheck);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", scheduleRevealCheck);
+      window.removeEventListener("resize", scheduleRevealCheck);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, [route]);
 }
 
@@ -133,13 +156,14 @@ function SkipLink() {
   return <a className="skip-link" href="#main-content" onClick={focusMain}>Skip to content</a>;
 }
 
-function SectionLink({ id, className, current = false, children }) {
+function SectionLink({ id, className, current = false, children, onNavigate }) {
   const scrollToSection = (event) => {
     event.preventDefault();
     document.getElementById(id)?.scrollIntoView({
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
       block: "start",
     });
+    onNavigate?.();
   };
 
   return <a className={className} href={`#${id}`} onClick={scrollToSection} aria-current={current ? "location" : undefined}>{children}</a>;
@@ -173,7 +197,7 @@ function Header({ active = "ai", activeSection = "home", detail = false, theme =
       <nav id="primary-navigation" className={open ? "primary-nav is-open" : "primary-nav"} aria-label="Portfolio focus">
         {detail
           ? <a href={active === "data" ? "/data" : "/ai-ml"}>← Portfolio</a>
-          : navItems.map(([id, label]) => <SectionLink key={id} id={id} current={activeSection === id}>{label}</SectionLink>)}
+          : navItems.map(([id, label]) => <SectionLink key={id} id={id} current={activeSection === id} onNavigate={() => setOpen(false)}>{label}</SectionLink>)}
       </nav>
       <div className="header-tools">
         <button className="theme-toggle" type="button" onClick={onThemeChange} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`} aria-pressed={theme === "dark"}>
@@ -203,7 +227,7 @@ function Hero({ focus }) {
         <div className="hero-tags">{focus.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
         <div className="hero-actions">
           <SectionLink className="button primary" id="selected-work">See focused work <span>↓</span></SectionLink>
-          <a className="button ghost" href={`mailto:${profile.email}`}>Start a conversation <span>↗</span></a>
+          <a className="button ghost" href={contactEmailHref}>Start a conversation <span>↗</span></a>
         </div>
       </div>
       <div className="hero-portrait-panel" data-reveal>
@@ -379,7 +403,7 @@ function CredentialsSection({ active }) {
         <div className="credential-grid">
           {visibleCertifications.map((item, index) => (
             <article key={item.title} className={expandedTitle === item.title ? "is-active" : undefined}>
-              <button className="credential-summary" type="button" aria-expanded={expandedTitle === item.title} aria-controls="credential-detail-panel" onClick={() => setExpandedTitle((current) => current === item.title ? null : item.title)}>
+              <button className="credential-summary" type="button" aria-expanded={expandedTitle === item.title} aria-controls={expandedTitle === item.title ? "credential-detail-panel" : undefined} onClick={() => setExpandedTitle((current) => current === item.title ? null : item.title)}>
                 <span>{String(index + 1).padStart(2, "0")}</span><small>{item.issuer} · {item.year}</small><h3>{item.title}</h3><i>{expandedTitle === item.title ? "−" : "+"}</i>
               </button>
             </article>
@@ -412,7 +436,7 @@ function ContactSection({ accent, active = "ai" }) {
         <div className="contact-status"><i />Open to new opportunities</div>
       </div>
       <div className="contact-actions" data-reveal>
-        <a href={`mailto:${profile.email}`}><span>Email</span><strong>{profile.email}</strong><i>↗</i></a>
+        <a href={contactEmailHref}><span>Email</span><strong>{profile.email}</strong><i>↗</i></a>
         <a href={profile.linkedin} target="_blank" rel="noreferrer"><span>LinkedIn</span><strong>chinmaybitne</strong><i>↗</i></a>
         <a href={profile.github} target="_blank" rel="noreferrer"><span>GitHub</span><strong>ChinmayBitne</strong><i>↗</i></a>
         <a href={`tel:${profile.phone.replace(/\s/g, "")}`}><span>Mobile</span><strong>{profile.phone}</strong><i>↗</i></a>

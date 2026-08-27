@@ -8,8 +8,7 @@
     "build": "vite build && node scripts/generate-routes.mjs",
     "preview": "vite preview --host",
     "validate": "node scripts/validate-content.mjs",
-    "test": "npm run validate && npm run build",
-    "deploy:check": "npm run build"
+    "test": "npm run validate && npm run build"
   },
   "dependencies": {
     "react": "^18.3.1",
