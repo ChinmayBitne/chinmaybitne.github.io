@@ -1,5 +1,5 @@
-import Portfolio from "./Portfolio.jsx";
+import Site from "./portfolio/Site.jsx";
 
 export default function App() {
-  return <Portfolio />;
+  return <Site />;
 }
