@@ -16,6 +16,7 @@ The production build creates a static HTML entry for every direct route so GitHu
 - Edit profile, experience, skills, credentials, education, and project data in `src/portfolio/content.js`.
 - Keep reusable UI in `src/portfolio/components/` and page composition in `src/portfolio/Site.jsx`.
 - Store public images in `public/images/`, downloadable documents in `public/documents/`, and the favicon at `public/favicon.svg`.
+- Keep the AI and data résumé paths under `profile.resumes`; each portfolio route and its case studies use the matching document.
 - Every project slug must be unique. Referenced covers and gallery images must exist under `public/`.
 
 ## Local checks

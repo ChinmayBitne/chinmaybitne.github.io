@@ -203,7 +203,7 @@ function Header({ active = "ai", activeSection = "home", detail = false, theme =
         <button className="theme-toggle" type="button" onClick={onThemeChange} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`} aria-pressed={theme === "dark"}>
           <i aria-hidden="true"><span /></i><b>{theme === "dark" ? "Light" : "Dark"}</b>
         </button>
-        <a className="header-resume" href={profile.resume} target="_blank" rel="noreferrer">Résumé <span>↗</span></a>
+        <a className="header-resume" href={profile.resumes[active] || profile.resumes.ai} target="_blank" rel="noreferrer">Résumé <span>↗</span></a>
       </div>
     </header>
   );

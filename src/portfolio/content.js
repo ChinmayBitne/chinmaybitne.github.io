@@ -6,7 +6,10 @@ export const profile = {
   location: "Tempe, Arizona",
   github: "https://github.com/ChinmayBitne",
   linkedin: "https://www.linkedin.com/in/chinmaybitne/",
-  resume: "/documents/chinmay-bitne-ai-engineer-resume.pdf",
+  resumes: {
+    ai: "/documents/chinmay-bitne-ai-engineer-resume.pdf",
+    data: "/documents/chinmay-bitne-data-analyst-resume.pdf",
+  },
   availability: "Open to new opportunities",
 };
 
