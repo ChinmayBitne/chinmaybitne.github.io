@@ -503,7 +503,7 @@ function ProjectDetail({ project, theme, onThemeChange }) {
         {project.gallery && (
           <section className="case-gallery page-section" data-reveal>
             <SectionHeading label="Project evidence" title="The real interface and output." />
-            <div>{project.gallery.map((image, index) => <img key={image} src={image} alt={`${project.title} product view ${index + 1}`} loading="eager" decoding="async" />)}</div>
+            <div>{project.gallery.map((image, index) => <img key={image} src={image} alt={project.galleryAlts?.[index] || `${project.title} product view ${index + 1}`} loading="eager" decoding="async" />)}</div>
             {project.imageNote && <p className="gallery-note">{project.imageNote}</p>}
           </section>
         )}

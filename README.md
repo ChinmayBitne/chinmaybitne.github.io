@@ -22,7 +22,7 @@ I completed an **M.S. in Information Technology at Arizona State University** wi
 ## 🚀 Selected work
 
 - **[AnswerLeaf AI](https://chinmaybitne.github.io/projects/answerleaf/)** — grounded academic research workspace with source approval, hybrid retrieval, and inspectable citations.
-- **[ASTRA](https://chinmaybitne.github.io/projects/astra/)** — voice-first Windows assistant coordinating local tools and multi-step workflows.
+- **[ASTRA AI](https://github.com/ChinmayBitne/ASTRA-AI)** — open-source, voice-first Windows desktop beta coordinating local tools and multi-step workflows ([case study](https://chinmaybitne.github.io/projects/astra/)).
 - **[NutriAssist AI](https://chinmaybitne.github.io/projects/nutriassist/)** — multimodal nutrition assistant combining visual understanding with contextual guidance.
 - **[Lane Departure Warning System](https://chinmaybitne.github.io/projects/ldws/)** — computer-vision pipeline for real-time lane detection and driver alerts.
 
