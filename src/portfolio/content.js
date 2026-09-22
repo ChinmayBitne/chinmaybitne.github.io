@@ -361,6 +361,15 @@ export const projects = [
 
 export const experience = [
   {
+    period: "Jul 2026 — Present",
+    role: "AI Engineer Intern",
+    company: "Integrated Travel · via InternPro.ai (unpaid)",
+    location: "Remote",
+    summary:
+      "Develop and test AI-powered search for a travel platform, including PostgreSQL/pgvector hybrid retrieval, query normalization, input validation, filter composition, ranking behavior, change-aware embedding regeneration, and source-grounded summarization.",
+    evidence: ["PostgreSQL/pgvector hybrid search", "Idempotent embedding pipeline", "Retrieval and ranking test coverage"],
+  },
+  {
     period: "Apr 2024 — Jul 2024",
     role: "AI Engineer Intern",
     company: "Virtusa Corporation",
@@ -392,6 +401,16 @@ export const experience = [
 // The Data portfolio keeps the verified employers and official role titles,
 // while emphasizing the data work that is most relevant to that audience.
 export const dataExperience = [
+  {
+    period: "Jul 2026 — Present",
+    role: "AI Engineer Intern",
+    lens: "Search analytics & vector data quality",
+    company: "Integrated Travel · via InternPro.ai (unpaid)",
+    location: "Remote",
+    summary:
+      "Build and evaluate hybrid search workflows using PostgreSQL/pgvector, with query normalization, validated filters, ranking tests, and change-aware embedding regeneration that keeps source data and vector representations consistent.",
+    evidence: ["Vector-data consistency", "Filter and ranking validation", "Automated retrieval edge-case tests"],
+  },
   {
     period: "Apr 2024 — Jul 2024",
     role: "Data Analyst Intern",

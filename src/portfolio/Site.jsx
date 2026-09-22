@@ -333,7 +333,7 @@ function ExperienceSection({ active }) {
       <SectionHeading label="Experience" title="Work shaped by delivery." />
       <div className="timeline">
         {visibleExperience.map((item, index) => (
-          <article key={item.role} data-reveal>
+          <article key={`${item.company}-${item.role}-${item.period}`} data-reveal>
             <div className="timeline-marker"><span>0{index + 1}</span><i /></div>
             <div className="timeline-date">{item.period}<small>{item.location}</small></div>
             <div className="timeline-copy">
